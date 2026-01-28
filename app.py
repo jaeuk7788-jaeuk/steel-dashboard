@@ -69,12 +69,7 @@ def load_data():
 # Feature Engineering
 # =========================
 def add_features(X: pd.DataFrame) -> pd.DataFrame:
-    X = X.copy()
-    eps = 1e-9
-    X["shape_ratio"] = X["Pixels_Areas"] / ((X["Log_X_Index"] * X["Log_Y_Index"]) + eps)
-    X["log_shape_ratio"] = np.log1p(X["shape_ratio"])
-    X["perimeter_sum"] = X["X_Perimeter"] + X["Y_Perimeter"] + eps
-    X["log_area_perimeter"] = np.log1p(X["Pixels_Areas"] / X["perimeter_sum"])
+   
     return X
 
 # =========================
@@ -455,4 +450,5 @@ else:
         st.plotly_chart(fig, use_container_width=True)
 
         st.markdown("### 확정율/REJECT율 변화는 운영에서 중요한 드리프트 신호가 될 수 있습니다.")
+
 
